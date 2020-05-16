@@ -1,0 +1,23 @@
+local t = {
+["Automatic"] = true;
+["Damage"] = 500;
+["FireRate"] = 800;
+["Accuracy"] = 0;
+["BulletVelocity"] = 2000;
+["ClipSize"] = 999;
+["StoredAmmo"] = 999;
+["CameraRecoil"] = 0;
+["HeadShotModifier"] = 100;
+["FireSoundId"] = 1911901046 -- You can change this to whatever, currently set as the default.
+}
+
+for _,y in pairs(game:GetService("ReplicatedStorage").Weapons:GetChildren()) do
+if y:FindFirstChild("Values") then
+for i,v in pairs(y.Values:GetChildren()) do
+wait()
+if t[v.Name] then
+v.Value = t[v.Name]
+end
+end
+end
+end
