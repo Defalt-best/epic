@@ -1,0 +1,15 @@
+local http = game:GetService("HttpService")
+local search = "murder mystery"
+local url = http:GetAsync("https://www.bing.com/search?q=site:pastebin.com%20"..http:UrlEncode(search), true)
+local filter = url:gsub("<style type=\"text/css\">%S+</style>", "")
+
+function remove_tags(str)for m in str:gmatch("<a.->")do str=str:gsub(m..(str:match(m.."%s")and"%s"or""),"")end for m in str:gmatch("<%w+>") do str = str:gsub(m .. (str:match(m .. "%s") and "%s" or ""), "") end for m in str:gmatch("</%w+>") do str = str:gsub(m .. (str:match(m .. "%s") and "%s" or ""), "") end return str end
+
+function remove_whitespace(str)return str:match("^%s*(.-)%s*$")end
+
+for m in string.gmatch(filter, [[<a href="https://pastebin.com/%S+" h="%S+">.-</a>]]) do
+local temp = string.lower(m:match("<a.-href=[\'\"](%S*)[\"\'].->.-</a>"))
+local rawlink = "https://pastebin.com/raw/"..string.sub(temp,22,#temp+1)
+end
+
+-- veri messy
